@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>今日の言い訳メーカー</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🎭 今日の言い訳メーカー</h1>
+
+        <p class="description">
+            やりたくないことを入力すると、AI（っぽいもの）が
+            今日の言い訳を考えてくれます。
+        </p>
+
+        <form method="POST">
+            <input type="text" name="task" placeholder="例：レポート" required>
+
+            <button type="submit">
+                言い訳を生成する
+            </button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+
+            <h2>生成結果</h2>
+
+            <p>
+                <strong>{{ result.task }}</strong> が進まない理由は……
+            </p>
+
+            <div class="reason">
+                「{{ result.reason }} のためです。」
+            </div>
+
+            <p>
+                信頼度：
+                <strong>{{ result.score }}%</strong>
+            </p>
+
+            <div class="advice">
+                💡 {{ result.advice }}
+            </div>
+
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
